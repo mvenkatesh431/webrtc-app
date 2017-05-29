@@ -1,0 +1,22 @@
+<!DOCTYPE html>
+<html>
+  <head>
+    <meta charset="utf-8">
+    <title> Call Over Signalling Server ! </title>
+  </head>
+  <body onload="init()">
+    <script src="call.js" charset="utf-8"></script>
+    <script src="adapter.js" charset="utf-8"></script>
+
+    <video id="localVid" autoplay muted ></video>
+    <video id="remoteVid" autoplay  ></video>
+
+    <div>
+      <button id="start" >start</button>
+      <button id="call" onclick="call(true)">call</button>
+      <button id="stop" onclick="stop()">stop</button>
+    </div>
+
+
+  </body>
+</html>
