@@ -10,7 +10,7 @@ var peerConnection;
 
 function init() {
 
-  uuid = uuid();
+  // uuid = uuid();
 
   console.log("Init Called \n");
   localVid = document.getElementById("localVid");
@@ -88,7 +88,8 @@ function gotIceCandidate(event) {
 
   if(event.candidate != null){
     console.log("Got ICE candidate : " + event.candidate.candidate);
-    serverConnection.send(JSON.stringify({'ice':event.candidate, 'uuid':uuid} ) );
+    // serverConnection.send(JSON.stringify({'ice':event.candidate, 'uuid':uuid} ) );
+        serverConnection.send(JSON.stringify({'ice':event.candidate } ) );
   }
 }
 
@@ -108,7 +109,7 @@ function gotServerMessage(message) {
   var recSDP = JSON.parse(message.data);
   console.log( recSDP);
   // Don't process, if it is from ourself.
-  if(recSDP.uuid == uuid) return;
+  // if(recSDP.uuid == uuid) return;
 
   if(recSDP.sdp) {
     console.log("ABout to set remoteDescription");
@@ -130,7 +131,8 @@ function createdDesc(desc) {
   console.log("Got Created Desc : " );
   console.log(desc.sdp);
   peerConnection.setLocalDescription(desc).then(function () {
-    serverConnection.send(JSON.stringify({'sdp':peerConnection.localDescription, 'uuid' : uuid }))
+    // serverConnection.send(JSON.stringify({'sdp':peerConnection.localDescription, 'uuid' : uuid }))
+        serverConnection.send(JSON.stringify({'sdp':peerConnection.localDescription }))
   }).catch(gotError);
 }
 
@@ -140,10 +142,10 @@ function gotError(error) {
 }
 
 
-function uuid() {
-  function s4() {
-    return Math.floor((1 + Math.random()) * 0x10000).toString(16).substring(1);
-  }
-
-  return s4() + s4() + '-' + s4() + '-' + s4() + '-' + s4() + '-' + s4() + s4() + s4();
-}
+// function uuid() {
+//   function s4() {
+//     return Math.floor((1 + Math.random()) * 0x10000).toString(16).substring(1);
+//   }
+//
+//   return s4() + s4() + '-' + s4() + '-' + s4() + '-' + s4() + '-' + s4() + s4() + s4();
+// }
