@@ -1,6 +1,6 @@
 var localVid;
 var remoteVid;
-var startbutton;
+// var startbutton;
 var callbutton;
 var hangupbutton;
 var peerConnection;
@@ -16,7 +16,7 @@ function init() {
   localVid = document.getElementById("localVid");
   remoteVid = document.getElementById("remoteVid");
 
-  startbutton = document.getElementById("start");
+  // startbutton = document.getElementById("start");
   callbutton = document.getElementById("call");
   hangupbutton = document.getElementById("stop");
 
@@ -26,7 +26,7 @@ function init() {
 
   serverConnection.onmessage = gotServerMessage;
 
-  startbutton.disabled = true;
+  // startbutton.disabled = true;
   hangupbutton.disabled = false;
   callbutton.disabled = false;
 
@@ -139,6 +139,13 @@ function createdDesc(desc) {
 
 function gotError(error) {
     console.log(error);
+}
+
+function stop() {
+  console.log("stop button clicked ");
+  peerConnection.close();
+  peerConnection = null;
+  hangupbutton.disabled = true;
 }
 
 
